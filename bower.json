@@ -14,5 +14,16 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    // "slick-carousel": "^1.8.1"
+  },
+  "overrides": {
+    // USE Overrides to pick files, e.g.
+    // "slick-carousel": {
+    //   "main": [
+    //     "**/*.min.js"
+    //     ]
+    // }
+  }
 }

@@ -9,6 +9,7 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     cssnano = require('gulp-cssnano'),
     sourcemaps = require('gulp-sourcemaps'),
+    mainBowerFiles = require('main-bower-files'),
     package = require('./package.json');
 
 
@@ -63,6 +64,11 @@ gulp.task('browser-sync', function() {
 });
 gulp.task('bs-reload', function () {
     browserSync.reload();
+});
+
+gulp.task('vendor', function () {
+    return gulp.src(mainBowerFiles(/* options */), { base: 'src/components' })
+        .pipe(gulp.dest('app/assets/components'))
 });
 
 gulp.task('default', ['css', 'js', 'browser-sync'], function () {
