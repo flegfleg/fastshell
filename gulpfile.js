@@ -10,6 +10,7 @@ var gulp = require('gulp'),
     cssnano = require('gulp-cssnano'),
     sourcemaps = require('gulp-sourcemaps'),
     mainBowerFiles = require('main-bower-files'),
+    minify = require('gulp-minify'),
     package = require('./package.json');
 
 
@@ -69,6 +70,21 @@ gulp.task('bs-reload', function () {
 gulp.task('vendor', function () {
     return gulp.src(mainBowerFiles(/* options */), { base: 'src/components' })
         .pipe(gulp.dest('app/assets/components'))
+});
+gulp.task('vendor-js', function () {
+    gulp.src(['app/assets/components//**/*.js', '!app/assets/components/**/*.min.js'])    
+    .pipe(uglify())
+    .pipe(minify({
+        ext: {
+            src: '.js',
+            min: '.js'
+        },
+        ignoreFiles: ['min.js']
+    }))
+    .pipe(rename({ dirname: '' }))
+    .pipe(rename({ suffix: '.min',  }))
+    .pipe(gulp.dest('app/assets/vendor/'))
+    .pipe(browserSync.reload({ stream: true, once: true }));
 });
 
 gulp.task('default', ['css', 'js', 'browser-sync'], function () {

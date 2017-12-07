@@ -16,14 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    // "slick-carousel": "^1.8.1"
-  },
-  "overrides": {
-    // USE Overrides to pick files, e.g.
-    // "slick-carousel": {
-    //   "main": [
-    //     "**/*.min.js"
-    //     ]
-    // }
+    "Scrollify": "^1.0.17",
+    "slick-carousel": "^1.8.1"
   }
 }
